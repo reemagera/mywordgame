@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/logo192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -10,34 +10,102 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Guess My Word</title>
   </head>
   <body>
+    <header>
+        <div class="logo">
+          <h1>Guess My Word</h1>
+        </div>
+        <a href="#" class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <nav>
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#" id="my-btn">Instructions</a></li>
+                <li><a href="#" id="about">About Me</a></li>
+            </ul>
+        </nav>
+      </header>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4>How to Play?</h4>
+        <p>1. Enter the letters if the 5 letter word in the blue coloured boxes</p>
+        <p>2. If a certain letter is present in actual position in the word, it is displayed in <span id="green" style="background-color: green;">green</span>background.</p>
+        <p>3. If a certain letter is present in some other position in the word, it is displayed in <span id="green" style="background-color: yellow;">yellow</span>background.</p>
+        <p>2. A yellow letter maybe present any number of times in the word. The number of yellows are NOT an indication of the frequency of letter in the word!</p>
+        <p>4. If a certain letter is not present in the word, it is displayed in <span id="green" style="background-color: pink;">pink</span>background.</p>
+        <h4>Points</h4>
+        <p>The lesser number of guesses you take to guess the complete word, the more points you get!</p>
+        <p>DO NOT REFRESH the page or you will loose your points count! You have to play this in ONE go</p>
+        <p>Press <button>Play Again</button> to guess new word and increment your level!</p>
+        <p>The more  points you get, the more stars you get!</p>
+      </div>
+    </div>
+    <div class="modal" id="aboutmodal">
+      <div class="modal-content">
+        <p>
+          Hi! Happy to see you here.
+          I am Reema Sasi Gera! I am an engineering student. I am currently pursuing B. Tech in Electronics and Communication engineering in VNIT, Nagpur.
+          My interests include in front end developement, python programming, digital Communication. This wepage that you are viewing is developed using React. 
+          I would love to hear your feedback or any suggestions to improve this page.
+        </p>
+        <a href="https://www.linkedin.com/in/reema-gera-7065aa1a4/" style="color: blanchedalmond; font-size:medium;">My linkedin profile</a>
+        <p style="font-size:small">Press anywhere to exit modal</p>
+      </div>
+    </div>
+    <h3>Please enter a five letter word in the empty spaces provided below</h3>
+    <h4 id="points-board">Your points: <span id="points"></span> Level: <span id="level"></span> Stars: <span id="stars"></span></h4>
+    <form id="attempt1" class="word-space" name="divform1">
+      <input id="l1" class="letter" type="text" placeholder="1" required maxlength="1" name="l1" oninput="autotab(this, document.divform1.l2)"></input>
+      <input id="l2" class="letter" type="text" placeholder="2" required maxlength="1" name="l2" oninput="autotab(this, document.divform1.l3)"></input>
+      <input id="l3" class="letter" type="text" placeholder="3" required maxlength="1" name="l3" oninput="autotab(this, document.divform1.l4)"></input>
+      <input id="l4" class="letter" type="text" placeholder="4" required maxlength="1" name="l4" oninput="autotab(this, document.divform1.l5)"></input>
+      <input id="l5" class="letter" type="text" placeholder="5" required maxlength="1" name="l5" oninput="autotab(this, document.divform1.l5)"></input>
+      <button class="submitit" type="submit" display="none">Submit</button>
+    </form>
+    <form id="attempt2" class="word-space" name="divform2">
+      <input id="l1" class="letter" type="text" placeholder="1" required maxlength="1" name="l1" oninput="autotab(this, document.divform2.l2)"></input>
+      <input id="l2" class="letter" type="text" placeholder="2" required maxlength="1" name="l2" oninput="autotab(this, document.divform2.l3)"></input>
+      <input id="l3" class="letter" type="text" placeholder="3" required maxlength="1" name="l3" oninput="autotab(this, document.divform2.l4)"></input>
+      <input id="l4" class="letter" type="text" placeholder="4" required maxlength="1" name="l4" oninput="autotab(this, document.divform2.l5)"></input>
+      <input id="l5" class="letter" type="text" placeholder="5" required maxlength="1" name="l5" oninput="autotab(this, document.divform2.l5)"></input>
+      <button class="submitit" type="submit" display="none">Submit</button>
+    </form>
+    <form id="attempt3" class="word-space" name="divform3">
+      <input id="l1" class="letter" type="text" placeholder="1" required maxlength="1" name="l1" oninput="autotab(this, document.divform3.l2)"></input>
+      <input id="l2" class="letter" type="text" placeholder="2" required maxlength="1" name="l2" oninput="autotab(this, document.divform3.l3)"></input>
+      <input id="l3" class="letter" type="text" placeholder="3" required maxlength="1" name="l3" oninput="autotab(this, document.divform3.l4)"></input>
+      <input id="l4" class="letter" type="text" placeholder="4" required maxlength="1" name="l4" oninput="autotab(this, document.divform3.l5)"></input>
+      <input id="l5" class="letter" type="text" placeholder="5" required maxlength="1" name="l5" oninput="autotab(this, document.divform3.l5)"></input>
+      <button class="submitit" type="submit" display="none">Submit</button>
+    </form>
+    <form id="attempt4" class="word-space" name="divform4">
+      <input id="l1" class="letter" type="text" placeholder="1" required maxlength="1" name="l1" oninput="autotab(this, document.divform4.l2)"></input>
+      <input id="l2" class="letter" type="text" placeholder="2" required maxlength="1" name="l2" oninput="autotab(this, document.divform4.l3)"></input>
+      <input id="l3" class="letter" type="text" placeholder="3" required maxlength="1" name="l3" oninput="autotab(this, document.divform4.l4)"></input>
+      <input id="l4" class="letter" type="text" placeholder="4" required maxlength="1" name="l4" oninput="autotab(this, document.divform4.l5)"></input>
+      <input id="l5" class="letter" type="text" placeholder="5" required maxlength="1" name="l5" oninput="autotab(this, document.divform4.l5)"></input>
+      <button class="submitit" type="submit" display="none">Submit</button>
+    </form>
+    <form id="attempt5" class="word-space" name="divform5">
+      <input id="l1" class="letter" type="text" placeholder="1" required maxlength="1" name="l1" oninput="autotab(this, document.divform5.l2)"></input>
+      <input id="l2" class="letter" type="text" placeholder="2" required maxlength="1" name="l2" oninput="autotab(this, document.divform5.l3)"></input>
+      <input id="l3" class="letter" type="text" placeholder="3" required maxlength="1" name="l3" oninput="autotab(this, document.divform5.l4)"></input>
+      <input id="l4" class="letter" type="text" placeholder="4" required maxlength="1" name="l4" oninput="autotab(this, document.divform5.l5)"></input>
+      <input id="l5" class="letter" type="text" placeholder="5" required maxlength="1" name="l5" oninput="autotab(this, document.divform5.l5)"></input>
+      <button class="submitit" type="submit" display="none">Submit</button>
+    </form>
+    <h1 id="message"></h1>
+    <button id="play-again" disabled>Play again</button>
   </body>
+  <script src="nav.js"></script>
 </html>

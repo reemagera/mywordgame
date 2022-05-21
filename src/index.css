@@ -1,3 +1,6 @@
+* {
+  text-align: center;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +8,194 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 100%;
 }
-
+.letter{
+  border-radius: 5px;
+  width: 75px;
+  height: 75px;
+  /* padding: 1px 1px; */
+  margin: 3px 3px;
+}
+input{
+  background-color: aqua;
+}
+input.letter{
+  font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+}
+input.letter:valid{
+  text-transform: uppercase;
+}
+.letter:valid{
+  text-transform: uppercase;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+button.submitit{
+  display: none;
+} 
+#root{
+  display: none;
+}
+#play-again{
+  background-color: aliceblue;
+  width: 90px;
+  height: 40px;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+}
+
+header .logo {
+  font-size: 1rem;
+  margin: 0rem 1rem;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ul li {
+  margin-right: 1rem;
+}
+
+ul li a {
+  font-size: 1rem;
+  padding: 8px 10px;
+  color: #fff;
+}
+
+ul li a.active,
+ul li a:hover {
+  background-color: grey;
+  transition: 0.5s;
+  border-radius: 4px;
+}
+
+.hamburger {
+  position: absolute;
+  right: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  display: none;
+}
+
+.hamburger .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: 0.3s all;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    background-position: cover;
+  }
+  .hamburger {
+    display: flex;
+    cursor: pointer;
+  }
+
+  ul {
+    flex-direction: column;
+    position: absolute;
+    top: 10vh;
+    right: -100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 86vh;
+    width: 100%;
+    align-items: center;
+    transition: right 0.3s ease-in;
+  }
+
+  ul li {
+    margin-right: 0px;
+  }
+
+  .menu-slide {
+    right: 0%;
+    transition: right 0.3s ease-in;
+  }
+
+  .cross .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .cross .bar:first-child {
+    transform: rotate(-45deg) translate(-5px, 7px);
+  }
+  .cross .bar:last-child {
+    transform: rotate(45deg) translate(-5px, -7px);
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: darkcyan;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+p{
+  font-size: medium;
 }
